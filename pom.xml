@@ -10,7 +10,7 @@
     <version>1.0.3</version>
     <name>jsf-text</name>
     <packaging>war</packaging>
-    <description>Text field using JSF.</description>
+    <description>Text field  using JSF.</description>
     
     <developers>
         <developer>
