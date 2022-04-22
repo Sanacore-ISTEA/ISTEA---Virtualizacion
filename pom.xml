@@ -10,7 +10,11 @@
     <version>1.0.1</version>
     <name>jsf-text</name>
     <packaging>war</packaging>
+<<<<<<< HEAD
     <description>Text f ield using JSF.</description>
+=======
+    <description>Text  field using JSF.</description>
+>>>>>>> a8903f0a87d10578fa9679a6635f7e37bd7dd236
     
     <developers>
         <developer>
