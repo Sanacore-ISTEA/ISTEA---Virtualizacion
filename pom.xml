@@ -123,9 +123,14 @@
  <distributionManagement>
     <!-- Copy this section from the Maven section of the "Connect to Feed" dialog" -->
       <repository>
-  <id>wuarg-visualstudio-com-wuarg-repositories-releases-wu</id>
-  <url>https://wuarg.pkgs.visualstudio.com/_packaging/Repositories-Releases.WU/maven/v1</url>
-  
+  <id>releases</id>
+  <url>http://192.168.0.137:8081/nexus/content/repositories/releases/</url>
+  <releases>
+    <enabled>true</enabled>
+</releases>
+<snapshots>
+  <enabled>true</enabled>
+</snapshots> 
 </repository>
    </distributionManagement>
 
