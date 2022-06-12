@@ -70,5 +70,11 @@ pipeline {
     }
 
   }
-
+  environment {
+    NEXUS_VERSION = 'nexus2'
+    NEXUS_PROTOCOL = 'http'
+    NEXUS_URL = '192.168.0.137:8081/nexus'
+    NEXUS_REPOSITORY = 'releases'
+    NEXUS_CREDENTIAL_ID = 'userNexus'
+  }
 }
