@@ -46,11 +46,11 @@ pipeline {
               ]
             );
 
-          } 
-          else {
+          } else {
             error "*** File: ${artifactPath}, could not be found";
           }
         }
+
       }
     }
 
@@ -59,20 +59,16 @@ pipeline {
         sh 'mvn package'
       }
     }
-    stage('Delivery to artifact in server'){
-      steps{
-        //sshPublisher(publishers: [sshPublisherDesc(configName: 'ServidorSSH', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/to_implement', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-        sshPublisher(publishers: [sshPublisherDesc(configName: "${env.ServidorMaster}", transfers: [sshTransfer(cleanRemote: true, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/war', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-        sshPublisher(publishers: [sshPublisherDesc(configName: "${env.ServidorMaster}", transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/|', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/*.config')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+    stage('SonarQube Analysis') {
+      steps {
+        withSonarQubeEnv(installationName: 'sonarqube', credentialsId: 'token-sonarqube') {
+          sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=IV_istea---virtualizacion_AYCG_eOVveIWPZuRFBuF'
+        }
+
       }
     }
-    environment {
-      ServidorMaster = 'ServidorSSH'
-      NEXUS_VERSION = 'nexus2'
-      NEXUS_PROTOCOL = 'http'
-      NEXUS_URL = '192.168.0.137:8081/nexus'
-      NEXUS_REPOSITORY = 'releases'
-      NEXUS_CREDENTIAL_ID = 'userNexus'
-    }
+
   }
+
 }
