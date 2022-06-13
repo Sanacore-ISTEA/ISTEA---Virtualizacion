@@ -2,8 +2,8 @@ pipeline {
   agent any
   environment{
     ServidorMaster="ServidorSSH"
-    ServidorDeploy="192.168.0.4"
-    PathDeploy="/to_implement"
+    ServidorDeploy="192.168.0.21"
+    PathDeploy="/home/deploy"
   }
   stages {
     stage('Test'){
@@ -55,7 +55,7 @@ pipeline {
             remote.user = userName
             remote.identityFile = identity
             //DEPLOY TO WAR
-            writeFile file: 'deploy.sh', text: "cp /to_implement/*.war ${env.PathDeploy} \n sleep 1m"
+            writeFile file: 'deploy.sh', text: "cp /home/to_implement/*.war ${env.PathDeploy} \n sleep 1m"
             sshScript remote: remote, script: 'deploy.sh'
           }
         }
