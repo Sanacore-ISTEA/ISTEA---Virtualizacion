@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment{
     ServidorMaster="ServidorSSH"
-    ServidorDeploy="192.168.0.21"
+    ServidorDeploy="192.168.0.4"
     PathDeploy="/home/deploy"
   }
   stages {
