@@ -3,7 +3,7 @@ pipeline {
   environment{
     ServidorMaster="ServidorSSH"
     ServidorDeploy="192.168.0.4"
-    PathDeploy="/home/deploy"
+    PathDeploy="/to_implement"
   }
   stages {
     stage('Test'){
