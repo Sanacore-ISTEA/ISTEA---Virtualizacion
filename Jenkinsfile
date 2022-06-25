@@ -3,7 +3,7 @@ pipeline {
   environment{
     ServidorMaster="ServidorSSH"
     ServidorDeploy="192.168.0.79"
-    PathDeploy="/home/deploy"
+    PathDeploy="/deploy"
   }
   stages {
     stage('Test'){
@@ -55,7 +55,7 @@ pipeline {
             remote.user = userName
             remote.identityFile = identity
             //DEPLOY TO WAR
-            writeFile file: 'deploy.sh', text: "cp /home/deploy/*.war ${env.PathDeploy} \n sleep 1m"
+            writeFile file: 'deploy.sh', text: "cp /deploy/*.war ${env.PathDeploy} \n sleep 1m"
             sshScript remote: remote, script: 'deploy.sh'
           }
         }
