@@ -55,8 +55,8 @@ pipeline {
             remote.user = userName
             remote.identityFile = identity
             //DEPLOY TO WAR
-            writeFile file: 'deploy.sh', text: "cp /deploy/*/*.war ${env.PathDeploy} \n sleep 1m"
-            sshCommand remote: remote, command: "chmod +x /deploy/deploy.sh"
+            writeFile file: 'deploy.sh', text: "cp /deploy/war/*.war ${env.PathDeploy} \n sleep 1m"
+//            sshCommand remote: remote, command: "chmod +x /deploy/deploy.sh"
             sshScript remote: remote, script: 'deploy.sh'
           }
         }
